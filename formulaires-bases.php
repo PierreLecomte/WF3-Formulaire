@@ -151,6 +151,12 @@ $niveaux = $maconnexion->query("SELECT id_niveau, description_niveau FROM niveau
 				<input type="time" name="time" id="time" min="11:00" max="14:00" step="900" value="12:30">
 			</fieldset>
 			<fieldset>
+				<legend>Trombinoscope</legend>
+				<label for="photo">Votre photo : </label>
+				<input type="file" name="photo" id="photo">
+				<input type="hidden" name="MAX_FILE_SIZE" value="3048576">
+			</fieldset>
+			<fieldset>
 				<legend>Validation</legend>
 				<p><input type="checkbox" name="accept_admission" id="accept_admission" value="oui">
 					<label for="accept_admission">J'ai lu et j'accepte les conditions d'admission.</label>
@@ -158,136 +164,6 @@ $niveaux = $maconnexion->query("SELECT id_niveau, description_niveau FROM niveau
 				<p><input type="submit" value="Envoyer" /></p>
 			</fieldset>
 		</form>	
-		
-/*	echo '<pre style="float:right;">';
-	echo '<h2>var_dump réponse : </h2>';
-	var_dump($_POST);
-	echo '<h2>print_r réponse : </h2>';
-	print_r($_POST);
-	echo '</pre>';*/
-
-
-	// echo $_POST['nom'].' '.$_POST['prenom'];
-	
-	
-	/* =====================================================================
-	* 
-	* Affiche un tableau de toutes les entrées du formulaire
-	* 
-	*/ 
-
-	/*
-
-	function ligne_grise($i, $cle, $valeur){
-			if ($i %2 == 0)
-			{
-				echo '<tr class="pure-table-odd">';
-			}
-			else{
-				echo '<tr>' ;
-			}
-			echo "<td>".$cle."</td>";
-			echo "<td>" . $valeur ."</td>";
-			echo "</tr>";	
-
-	}
-
-
-	echo '<table class="pure-table">'; // ne fonctionne pas avec ie8 & <
-	echo '<thead><tr><th>Clé</th><th>Valeur</th></tr></thead>';
-
-	$i = 0;
-	foreach($_POST as $cle => $valeur){
-		
-		if(in_array($cle,["dispo_date","date_naissance"])){
-			
-			ligne_grise($i, $cle, conv_date($valeur));
-
-		}
-		else{
-			ligne_grise($i, $cle, $valeur);
-		}
-
-		$i++;
-	}
-	echo "</table>";*/
-
-	?>
-
-
-
-	<div class="columns">
-		<div class="column hero is-info">
-			<p class="title">À propos de vous</p>
-			<p><?php echo strtoupper($_POST['nom']);?></p>
-			<p><?php echo ucfirst($_POST['prenom']);?></p>
-			<p><?php echo $_POST['age'];?></p>
-			<p><?php echo conv_date($_POST['date_naissance']);?></p>
-		</div>
-
-		<div class="column hero is-primary">
-			<p class="title">Vos coordonnées</p>
-			<p><?php echo "<a href='mailto:" . $email_mailto . "'>" . $email . "</a>"; ?></p>
-			<p><?php echo "<a href='tel:" . conv_tel($_POST['telephone']) . "'>" . conv_tel($_POST['telephone']) . "</a>"; ?></p>
-		</div>
-
-		<div class="column hero is-warning">
-			<p class="title">Vos identifiants</p>
-			<p><?php echo $_POST['identifiant'];?></p>
-			<p><?php echo $_POST['mot_de_passe'];?></p>
-		</div>
-
-	</div>
-
-	<div class="columns">
-		<div class="column hero is-danger">
-			<p class="title">Vos préférences</p>
-			<p><?php echo $_POST['langage'];?></p>
-		</div>
-
-		<div class="column hero is-info">
-			<p class="title">Votre niveau</p>
-			<p><?php echo $_POST['niveau'];?></p>
-		</div>
-
-		<div class="column hero is-primary">
-			<p class="title">Lettre d'information</p>
-			<p><?php if (isset($_POST['newsletter'])){
-				echo 'oui';
-			}
-			else{
-				echo 'non';
-			}?>
-		</p>
-	</div>
-</div>
-
-<div class="columns">
-	<div class="column hero is-warning">
-		<p class="title">Un peu plus sur vous...</p>
-		<p><?php echo $_POST['bio'];?></p>
-		<p><?php echo $_POST['philosophie'];?></p>
-	</div>
-
-	<div class="column hero is-danger">
-		<p class="title">Par rapport à la formation</p>
-		<p><?php echo $_POST['motivation'];?></p>
-		<p><?php echo conv_date($_POST['dispo_date']);?></p>
-	</div>
-
-	<div class="column hero is-info">
-		<p class="title">Divers</p>
-		<p><?php echo $_POST['time'];?></p>
-	</div>
-</div>
-
-<?php
-
-} // fin if !empty	
-?>
-
-
-<br /><br /><br /><br />
 
 </body>
 </html>
