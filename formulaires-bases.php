@@ -29,7 +29,7 @@ $niveaux = $maconnexion->query("SELECT id_niveau, description_niveau FROM niveau
 
 		?>
 
-		<form method="post" action="insertion.php">	
+		<form method="post" action="insertion.php" enctype="multipart/form-data">	
 			<input type="hidden" value="stagiaire" id="type_utilisateur" name="type_utilisateur" >
 			<fieldset>
 				<legend>À propos de vous</legend>

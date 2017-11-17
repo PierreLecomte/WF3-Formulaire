@@ -5,6 +5,30 @@
 		  exit();
 		}
 
+
+	//DEBUG
+
+	echo "<pre style='float:right;'>";
+	var_dump($_POST);
+	var_dump($_FILES);
+	echo "</pre>";
+
+	if ($_FILES['photo']['error'] > 0){
+		echo "Erreur lors du transfert";
+	}
+
+	else{
+		$nom_fichier = 'files/' . $_POST['nom'] . "_". $_POST['prenom'] . "_" . $_FILES['photo']['name'];
+		$resultat = move_uploaded_file($_FILES['photo']['tmp_name'], $nom_fichier);
+		
+		if ($resultat) {
+			echo "Transfert du fichier réussi";
+		}
+
+		else{
+			echo "Échec du transfert de fichier";
+		}
+	}
 ?>
 
 
@@ -48,6 +72,7 @@
 		}
 
 	}
+
 	else{
 		$email = 'adresse e-mail invalide';
 		$email_mailto = '';
@@ -65,6 +90,7 @@ $ma_requete =
 	date_naissance,
 	email,
 	tel,
+	photo_profil,
 	mot_de_passe,
 	id_langage_langage,
 	id_niveau_niveau,
@@ -83,7 +109,8 @@ $ma_requete =
 	$_POST['prenom'] . "','". 
 	$_POST['date_naissance'] . "','". 
 	$_POST['email'] . "','". 
-	$_POST['telephone'] . "','". 
+	$_POST['telephone'] . "','".
+	$nom_fichier . "','".  
 	$_POST['mot_de_passe'] . "','". 
 	$_POST['langage'] . "','". 
 	$_POST['niveau'] . "','". 
@@ -98,11 +125,11 @@ $ma_requete =
 
 $info = $maconnexion->exec($ma_requete);
 
+// Si la requete a fonctionné, on affiche les données insérées
+
 if ($info){
 	echo "les données ont bien été ajoutées";
 ?>
-
-
 
 	<div class="columns">
 		<div class="column hero is-info">
@@ -171,6 +198,9 @@ if ($info){
 
 <?php
 }
+
+// Sinon, on affiche 'erreur' et la requete qui n'a pas fonctionné
+
 else{
 	echo "erreur <br />";
 	echo $ma_requete;
