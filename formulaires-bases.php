@@ -167,3 +167,8 @@ $niveaux = $maconnexion->query("SELECT id_niveau, description_niveau FROM niveau
 
 </body>
 </html>
+
+
+<?php
+	$maconnexion = NULL;
+?>

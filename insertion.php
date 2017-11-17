@@ -193,6 +193,7 @@ if ($info){
 	<div class="column hero is-info">
 		<p class="title">Divers</p>
 		<p>Heure préférée : <?php echo $_POST['time'];?></p>
+		<p>Fichier envoyé : <?php if (empty($_FILES)== 0) echo $_FILES['photo']['name']; ?></p>
 	</div>
 </div>
 
@@ -205,6 +206,8 @@ else{
 	echo "erreur <br />";
 	echo $ma_requete;
 }
+
+$maconnexion = NULL;
 ?>
 
 
